@@ -1,0 +1,30 @@
+Canyon Jet Racer is a low-altitude arcade jet race through a narrow canyon.
+
+Race five bots through a procedurally built canyon, chase your best lap in time
+trial, and collect sector, lap and medal times. The whole track - walls,
+terraces, rim and the baked shadow line - is generated from a spline in code,
+so the map preview on every card is a real drawing of that track.
+
+FEATURES
+
+- Six maps, each with its own spline, colour mood and difficulty
+- Race against five bots with a live standings panel
+- Time trial with a ghost of your best lap
+- 16 checkpoints, 4 sectors, lap and medal times
+- Floating touch joystick, airbrake and a charged boost
+- Optional gyroscope steering with adjustable sensitivity
+- Everything is synthesised in code: engine, wind, effects and music.
+  There are no audio files and nothing is downloaded.
+- Works fully offline. No ads, no analytics, no network permission.
+
+CONTROLS
+
+- Left thumb: virtual stick for pitch and roll. It floats to where you press.
+- Right thumb: BOOST (3 second charge) and BRAKE (airbrake while held).
+- The joystick lets go and the jet levels itself, so you can look up.
+- Gyroscope steering can be enabled in Settings; the left half of the screen
+  then becomes the boost button.
+- Press II or Android Back to pause.
+
+Canyon Jet Racer is free software, released under the GNU GPL v3.0.
+The complete source code is available on GitHub.

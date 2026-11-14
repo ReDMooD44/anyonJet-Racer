@@ -1,0 +1,78 @@
+# Canyon Jet Racer - fdroiddata taslağı
+#
+# Bu dosya F-Droid'in ana deposuna (gitlab.com/fdroid/fdroiddata) gönderilecek
+# tarifin taslağıdır: metadata/com.canyonjet.racer.yml olarak eklenir.
+# İlk başvuru için RFP (Requests for Packaging) issue'su açmak yeterlidir;
+# gönüllüler bu taslağı gözden geçirip düzeltir.
+#
+# Derleme, Godot'yu kaynaktan derler (F-Droid kuralı: hazır ikili dosya yok).
+# export_presets.cfg içindeki "F-Droid" ön ayarı imzasız APK üretir.
+
+Categories:
+  - Games
+License: GPL-3.0-only
+AuthorName: Harun Akbulut
+WebSite: https://github.com/ReDMooD44/anyonJet-Racer
+SourceCode: https://github.com/ReDMooD44/anyonJet-Racer
+IssueTracker: https://github.com/ReDMooD44/anyonJet-Racer/issues
+Changelog: https://github.com/ReDMooD44/anyonJet-Racer/releases
+
+AutoName: Canyon Jet Racer
+Summary: Low-altitude arcade jet racing through a canyon
+Description: |
+    Canyon Jet Racer is a low-altitude arcade jet race through a narrow canyon.
+
+    Race five bots through a procedurally built canyon, chase your best lap in
+    time trial, and collect sector, lap and medal times. The whole track -
+    walls, terraces, rim and the baked shadow line - is generated from a spline
+    in code, so the map preview on every card is a real drawing of that track.
+
+    Features:
+
+    * Six maps, each with its own spline, colour mood and difficulty
+    * Race against five bots with a live standings panel
+    * Time trial with a ghost of your best lap
+    * 16 checkpoints, 4 sectors, lap and medal times
+    * Floating touch joystick, airbrake and a charged boost
+    * Optional gyroscope steering with adjustable sensitivity
+    * Everything is synthesised in code: engine, wind, effects and music
+    * Works fully offline: no ads, no analytics, no network permission
+
+RepoType: git
+Repo: https://github.com/ReDMooD44/anyonJet-Racer.git
+
+Builds:
+  - versionName: 1.0.0
+    versionCode: 9
+    commit: v1.0.0
+    timeout: 14400
+    sudo:
+      - apt-get update
+      - apt-get install -y pkgconf scons g++
+    output: build/canyon-jet-racer-unsigned.apk
+    srclibs:
+      - Godot@ed1daf0bf001b61586d9930840f2f1394092c079
+    build:
+      - pushd $$Godot$$
+      - export ANDROID_NDK_ROOT=$$NDK$$
+      - export ANDROID_HOME=$$SDK$$
+      - export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+      - export SCONS="scons -j `nproc` verbose=no warnings=no progress=no"
+      - $SCONS target=editor platform=linux
+      - $SCONS target=template_release platform=android arch=arm64 production=yes
+        swappy=no generate_android_binaries=yes generate_apk=yes
+      - popd
+      - mkdir -p ~/.local/share/godot/export_templates/4.7.2.stable
+      - cp $$Godot$$/bin/android_release.apk ~/.local/share/godot/export_templates/4.7.2.stable/android_release.apk
+      - echo 4.7.2.stable > ~/.local/share/godot/export_templates/4.7.2.stable/version.txt
+      - mkdir -p build
+      - $$Godot$$/bin/godot.linuxbsd.editor.x86_64 --headless --import
+      - $$Godot$$/bin/godot.linuxbsd.editor.x86_64 --headless --export-release "F-Droid"
+        build/canyon-jet-racer-unsigned.apk
+    ndk: r29b
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+UpdateCheckData: export_presets.cfg|version/code=(\d+)|.|version/name="([\d.]+)"
+CurrentVersion: '1.0.0'
+CurrentVersionCode: 9

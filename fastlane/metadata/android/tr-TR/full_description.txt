@@ -1,0 +1,31 @@
+Canyon Jet Racer, dar bir kanyonda alçaktan uçuşla yapılan bir arcade jet
+yarışıdır.
+
+Beş bota karşı yarışın, time trial modunda en iyi turunuzu kovalayın; sektör,
+tur ve madalya dereceleri toplayın. Pistin tamamı - duvarlar, teraslar, zirve
+çizgisi ve gömülü gölge çizgisi - kodla bir spline boyunca üretilir. Bu yüzden
+harita kartlarındaki önizleme, o pistin gerçek çizimidir.
+
+ÖZELLİKLER
+
+- Kendi spline'ı, renk atmosferi ve zorluğu olan altı harita
+- Beş bota karşı canlı sıralama paneliyle yarış
+- En iyi turunuzun hayaletiyle time trial
+- 16 checkpoint, 4 sektör, tur ve madalya dereceleri
+- Yüzen dokunmatik joystick, airbrake ve şarjlı boost
+- İsteğe bağlı jiroskop direksiyonu ve hassasiyet ayarı
+- Her şey kodla sentezlenir: motor, rüzgâr, efektler ve müzik.
+  Ses dosyası yoktur, hiçbir şey indirilmez.
+- Tamamen çevrimdışı çalışır. Reklam, analitik ve ağ izni yoktur.
+
+KONTROLLER
+
+- Sol başparmak: pitch ve roll için sanal çubuk. Bastığınız yere taşınır.
+- Sağ başparmak: BOOST (3 saniye şarj) ve BRAKE (basılı tutunca airbrake).
+- Çubuğu bırakınca uçak kendini düzler.
+- Jiroskop kontrolü Ayarlar'dan açılabilir; ekranın sol yarısı bu durumda
+  boost düğmesi olur.
+- Duraklatmak için II düğmesine veya Android geri tuşuna basın.
+
+Canyon Jet Racer, GNU GPL v3.0 altında özgür yazılımdır.
+Kaynak kodun tamamı GitHub'da bulunur.

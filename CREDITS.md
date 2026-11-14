@@ -1,5 +1,17 @@
 # Credits
 
+## Licensing
+
+Everything in this repository is released under the GNU General Public License
+v3.0 (see `LICENSE`): the code, the scenes and resources, the wall and floor
+textures, and the art supplied by the project author - the space fighter model
+with its PBR textures, the laser beam sheet, `GROUND.fbx` and `rock.jpg`.
+
+The only exception is the **Canyon Set**, which is CC0 1.0: it places no
+condition on redistribution, so the baked meshes it produced in
+`resources/canyon_props.tres` are covered by this repository's licence like
+everything else.
+
 ## Third-party assets
 
 **Canyon Set** — rocks and plants scattered along the canyon rim and the foot
@@ -23,12 +35,13 @@ binary .material files as well) and run `tools/bake_props.gd`.
 the effect is rebuilt in Godot from the package's particle settings.
 
 **Space fighter model** and **laser beam sheet** — supplied by the project
-owner for use in this game.
+author and released with the rest of this repository under GPL-3.0.
 
 ## Generated
 
 The canyon wall and floor textures were generated for this project with
-Higgsfield, the wall one from a reference photograph of Antelope Canyon.
+Higgsfield, the wall one from a reference photograph of Antelope Canyon. They
+are released with the rest of this repository under GPL-3.0.
 
 Everything else - the canyon geometry, the strata, the flight model, the
 audio, the HUD - is produced in code by this project.

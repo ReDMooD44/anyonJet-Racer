@@ -1,6 +1,6 @@
 # Canyon Jet Racer
 
-Godot 4.7 · GDScript · Android (arm64-v8a + x86_64, landscape) · v1.0-beta
+Godot 4.7 · GDScript · Android (arm64-v8a + x86_64, landscape) · v1.0.0 · GPL-3.0
 
 Dar bir kanyonda alçak uçuşla arcade jet yarışı. Oyuncu + 5 bot, tur/sektör/madalya
 sistemi, ghost'lu time trial. Referans: `SPEC.md` ve oynanış videosundan okunan
@@ -15,8 +15,9 @@ yükleme anında CPU'da hesaplanıp köşe noktalarına yazılıyor.
 
 ## Kurulum
 
-`build/canyon-jet-racer.apk` — release imzalı, 58,5 MB, Android 7.0+ (minSdk 24).
-Telefona kopyalayıp açman yeterli; "bilinmeyen kaynak" iznini istemesi normal.
+`build/canyon-jet-racer.apk` — release imzalı, 58,5 MB, arm64-v8a + x86_64,
+Android 7.0+ (minSdk 24). Telefona kopyalayıp açman yeterli; "bilinmeyen kaynak"
+iznini istemesi normal.
 
 ## Ekran görüntüleri
 
@@ -50,6 +51,51 @@ godot --path . --headless --export-release "Android" build/canyon-jet-racer.apk
 Anahtarın kendisi de depoda değil. Android'de bir uygulama yalnızca onu ilk
 imzalayan anahtarla güncellenebilir, yani o dosya kaybolursa yayındaki sürüm
 bir daha güncellenemez.
+
+Depoda iki ön ayar var:
+
+| Ön ayar | Çıktı | Ne için |
+|---|---|---|
+| `Android` | `build/canyon-jet-racer.apk` | imzalı, arm64-v8a + x86_64, 58,5 MB — doğrudan kurulum |
+| `F-Droid` | `build/canyon-jet-racer-unsigned.apk` | imzasız, yalnızca arm64-v8a. Şablon olarak proje kökündeki `android_release.apk` dosyasını kullanır; bu dosyayı F-Droid, Godot'yu kaynaktan derleyerek üretir |
+
+Telefona kuracağın APK için `Android` ön ayarını kullan. `F-Droid` ön ayarı mağaza derlemesi içindir: imza kapalıdır ve export şablonu `./android_release.apk` yoluna bağlıdır.
+
+Bu makinede anahtar `release/canyon-jet-racer.jks` olarak üretildi; parolası ve
+yedekleme notları `release/KEYSTORE-README.txt` içinde (`release/` gitignore'da).
+
+## F-Droid
+
+Depo, F-Droid'in istediği biçimde hazırlanmıştır:
+
+- `LICENSE` — **GNU GPL v3.0** (F-Droid yalnızca özgür lisanslı uygulamaları alır)
+- `CREDITS.md` — hangi varlığın hangi lisansla geldiği; aksi belirtilmedikçe depodaki
+  her şey GPL-3.0, Canyon Set mesh'leri CC0
+- `fastlane/metadata/android/{en-US,tr-TR}/` — başlık, kısa ve uzun açıklama
+- `fastlane/metadata/android/en-US/images/` — 512×512 ikon ve altı telefon ekran görüntüsü
+- `fdroid/com.canyonjet.racer.yml` — fdroiddata için derleme tarifi taslağı
+- Ağ izni yok, reklam yok, analitik yok, kapalı kaynak SDK yok
+  (APK'da yalnızca `VIBRATE` izni var)
+- `F-Droid` ön ayarı: imzasız APK, yalnızca arm64-v8a; tarif Godot'yu kaynaktan derler
+
+Yayın akışı:
+
+1. Depoyu GitHub'da **herkese açık** tutun (zaten öyle).
+2. Sürümü artırın (`export_presets.cfg` içinde `version/code` ve `version/name`),
+   `git tag v1.0.1 && git push --tags` ile etiket oluşturup Release yayınlayın.
+   F-Droid yeni sürümleri bu etiketlerden ve `export_presets.cfg`'den izler.
+3. İlk başvuru için [RFP (Requests for Packaging)](https://gitlab.com/fdroid/rfp/-/issues)
+   sayfasında yeni bir issue açın: depo adresi, lisans (`GPL-3.0`), "Godot 4.7" ve
+   paket adı (`com.canyonjet.racer`). Gönüllüler tarifi kendileri de hazırlayabilir.
+4. İsterseniz `fdroid/com.canyonjet.racer.yml` dosyasını
+   [fdroiddata](https://gitlab.com/fdroid/fdroiddata) deposuna
+   `metadata/com.canyonjet.racer.yml` olarak ekleyip merge request açabilirsiniz.
+   Tarifteki `Repo` adresini kendi deponuzla değiştirmeyi unutmayın.
+
+F-Droid kendi APK'sını kendi anahtarıyla imzalar; sizin keystore'unuz yalnızca
+GitHub Releases'e ekleyeceğiniz APK'lar içindir. Tarif `AllowedAPKSigningKeys`
+içermiyor: reproducible build karşılaştırması için upstream APK'nın kaynaktan
+derlenmiş Godot şablonlarıyla üretilmesi gerekir, bu da ayrı bir adım.
 
 ## Oyun akışı
 
@@ -144,7 +190,7 @@ geometri için sahne toplamı hiçbir şey söylemiyor.
 | Kanyon üçgen (toplam) | 34.272 | — |
 | Pist uzunluğu | 18.581 m | — |
 | Temiz tur süresi | 58,1 s | 58,5 s = Author |
-| APK boyutu | 60,5 MB (sürüm 1.0-beta) | < 100 MB |
+| APK boyutu | 58,5 MB (sürüm 1.0.0, arm64 + x86_64) | < 100 MB |
 | Gerçek zamanlı gölge | yok (blob shadow decal) | yok |
 | Fullscreen post-process | 1 geçiş (vignette + hız çizgileri) | ≤ 1 |
 | Fragment shader noise | yok | yasak |
